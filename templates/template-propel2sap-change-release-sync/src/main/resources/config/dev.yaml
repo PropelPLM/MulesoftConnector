@@ -1,0 +1,22 @@
+# Properties to be used on the Development environment
+
+#salesforce connections
+sfdc:
+  baseUrl: "https://uptima-20240315.my.salesforce.com"
+  host: ""
+  username: "otto-uptima@032024.demo"
+  tokenEndpoint: "https://test.salesforce.com/services/oauth2/token"
+  tokenUrl: "https://uptima-20240315.my.salesforce.com/services/oauth2/token"
+  oauth:
+    host: ""
+    
+# SAP S/4HANA Cloud Connector
+sap:
+  s4hana:
+    host: "3.80.153.54"
+    username: "BPINST"
+    systemNumber: "00"
+    clientId: "100"
+  
+
+  

@@ -1,0 +1,12 @@
+# Properties to be used on the Production environment
+
+
+sfdc:
+  password: "![]"
+  securityToken: "![]"
+  consumerKey: "![]"
+  consumerSecret: "![]"
+  
+# SAP S/4HANA Cloud Connector
+sap:
+  s4hana.password: "![]"

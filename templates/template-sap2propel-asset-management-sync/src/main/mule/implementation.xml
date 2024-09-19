@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:propel="http://www.mulesoft.org/schema/mule/propel" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:salesforce="http://www.mulesoft.org/schema/mule/salesforce"
+	xmlns:sap="http://www.mulesoft.org/schema/mule/sap" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/sap http://www.mulesoft.org/schema/mule/sap/current/mule-sap.xsd
+http://www.mulesoft.org/schema/mule/salesforce http://www.mulesoft.org/schema/mule/salesforce/current/mule-salesforce.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/propel http://www.mulesoft.org/schema/mule/propel/current/mule-propel.xsd">
+	<flow name="asset-sync-to-propel-implementationFlow" doc:id="5b45a32e-ee43-4616-84de-62676216fc39" >
+		<sap:retrieve-idoc doc:name="Retrieve IDoc" doc:id="9217bd60-56f6-498a-98b3-4d6e9500ec48" config-ref="SAP_Config" key="#[payload]"/>
+		<foreach doc:name="For Each" doc:id="20b42bd7-7d49-4571-aa1b-397945bfba13" >
+			<propel:get-item doc:name="Get Item" doc:id="f5647621-6849-4187-bcac-aeab7cc8a1a9" namespaceUriParam="PLDM" itemNumberUriParam="#[payload]" config-ref="Propel_Config"/>
+			<logger level="INFO" doc:name="PLACEHOLDER: GET ITEM FROM PROPEL" doc:id="74eda4fd-1663-43ad-a4ba-10369b035117" />
+			<salesforce:query doc:name="Query" doc:id="8ecbe71b-2020-4c6e-b537-5c4de0c56cce" config-ref="Salesforce_Config">
+				<salesforce:salesforce-query ><![CDATA[#[payload]]]></salesforce:salesforce-query>
+			</salesforce:query>
+			<ee:transform doc:name="Transform Message" doc:id="451dfb03-1fbb-49d2-95f5-0704c30bc59b" >
+				<ee:message >
+					<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+{
+}]]></ee:set-payload>
+				</ee:message>
+			</ee:transform>
+			<salesforce:upsert doc:name="Upsert" doc:id="2ac909ce-fe84-4046-b95e-1b9af775362a" config-ref="Salesforce_Config" objectType="Account" externalIdFieldName="#[payload]"/>
+		</foreach>
+	</flow>
+</mule>

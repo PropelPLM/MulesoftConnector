@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:salesforce="http://www.mulesoft.org/schema/mule/salesforce"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/salesforce http://www.mulesoft.org/schema/mule/salesforce/current/mule-salesforce.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="change-release-to-sap" doc:id="5aa717f0-8dc2-4bda-8040-c6cc4bcd2650" >
+		<salesforce:replay-channel-listener doc:name="Replay channel listener" doc:id="4fe11329-1006-4a82-b559-631b39a18fb7" config-ref="Salesforce_Config" streamingChannel="${sfdc.channel.changeRelease}" replayOption="FROM_LAST_REPLAY_ID" autoReplay="true"/>
+		<ee:transform doc:name="To JSON" doc:id="2313c12b-ce58-403b-b7a8-931e83d92200" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<idempotent-message-validator doc:name="Idempotent Message Validator" doc:id="bc560d79-0a51-42c6-86d2-a46c757c2aed" objectStore="platform_events_idempotent_object_store"/>
+		<logger level="INFO" doc:name="START:Logger" doc:id="ba902894-bc51-4695-b7e4-247026f0eed4" message='#["Change Release Sync Started"]'/>
+		<flow-ref doc:name="Flow Reference:change-release-implementation-flow" doc:id="6e1771aa-85c0-4dd2-99c8-43149d00867f" name="change-release-implementation-flow"/>
+		<ee:transform doc:name="Build Response" doc:id="2963a9db-9763-463a-aa06-1957d4785a2a" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+{
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="END:Logger" doc:id="884cfa2b-8223-4cf6-93d5-de7e46cf2b94" message='#["Change Release Sync Completed"]'/>
+	</flow>
+	<flow name="vendor-sync-to-propel" doc:id="36820f39-185d-4ea7-802e-de772857e2d9" >
+		<scheduler doc:name="Scheduler" doc:id="31aee5a1-19ac-4e08-ba17-1e37c94a4aac" >
+			<scheduling-strategy >
+				<fixed-frequency />
+			</scheduling-strategy>
+		</scheduler>
+		<logger level="INFO" doc:name="START:Logger" doc:id="ec47b1cf-f325-4750-97a1-8eef891bbbf8" message='#["Vendor Sync to Propel Started"]'/>
+		<flow-ref doc:name="Flow Reference:vendor-sync-to-propel-implementationFlow" doc:id="b7c05b86-74e7-4dab-9632-535d04fb866b" name="vendor-sync-to-propel-implementationFlow"/>
+		<ee:transform doc:name="Build Response" doc:id="dfb1455c-6c19-437c-9912-e10b9768de6f" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+{
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="END:Logger" doc:id="85a5cccb-8f9d-4d0e-a31f-b45f4a93a745" message='"Vendor Sync to Propel Completed"'/>
+	</flow>
+	<flow name="vendor-sync-to-sap" doc:id="42abd853-95d5-43d2-913c-6f033fc78524" >
+		<scheduler doc:name="Scheduler" doc:id="648e72f4-a417-4cd1-9b56-d4ee7636a015" >
+			<scheduling-strategy >
+				<fixed-frequency />
+			</scheduling-strategy>
+		</scheduler>
+		<logger level="INFO" doc:name="START:Logger" doc:id="d0e3abd9-45ba-4370-8b01-899225752eb4" message='#["Vendor Sync to SAP Started"]'/>
+		<flow-ref doc:name="Flow Reference:vendor-sync-to-sap-implementationFlow" doc:id="6be89e6d-781d-43cd-95d2-ef4ce0a8cb55" name="vendor-sync-to-sap-implementationFlow"/>
+		<ee:transform doc:name="Build Response" doc:id="3ee369c2-577f-4ed0-93ea-9c970d82e874" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+{
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="END:Logger" doc:id="a1b9c21c-b29b-4c6b-9364-1d947fc74e4e" message='"Vendor Sync to Propel Completed"'/>
+	</flow>
+</mule>

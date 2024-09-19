@@ -1,0 +1,74 @@
+#% Rest Connector Descriptor 1.0
+
+apiSpec:
+  url: /Users/uptima/Projects/Propel/code/uptima/propel 2/propel.raml
+
+connectorName: Propel
+connectorDescription: Propel Custom Connector
+
+connectorGav:
+  groupId: com.mulesoft.connectors
+  artifactId: propel
+  version: 1.0.0-SNAPSHOT
+
+baseUri:
+  value: 'https://propel-api-url'
+  type: parameter
+
+endpoints:
+  /services/apexrest/{namespace}/api/v2/item/{itemNumber}:
+    ignored: false
+    operations:
+      get:
+        displayName: Get Item
+        description: Get Item and all item revisions.
+        outputMediaType: application/json
+        expects:
+          uriParameters:
+            namespace:
+              displayName: namespace
+            itemNumber:
+              displayName: Item Number
+        ignored: false
+      put:
+        displayName: Update Item
+        description: 'Updates a specified item''s item revision fields. If the item is released and no drafts exist, a new draft will be created.'
+        inputMediaType: application/json
+        outputMediaType: application/json
+        expects:
+          uriParameters:
+            namespace:
+              displayName: namespace
+            itemNumber:
+              displayName: Item Number
+        ignored: false
+  /services/apexrest/{namespace}/api/v3/change/{itemNumber}:
+    ignored: false
+    operations:
+      get:
+        displayName: Get Change
+        description: Get Propel Change
+        outputMediaType: application/json
+        expects:
+          queryParameters:
+            affectedItems:
+              displayName: Affected Items
+              description: Affected Items
+            bom:
+              displayName: bom
+              description: BOM
+            amls:
+              displayName: amls
+              description: AMLS
+            attachments:
+              displayName: attachments
+              description: Attachments
+            useXMLExportFieldset:
+              displayName: Use XMLExport Fieldset
+              description: Use XML Export Fieldset
+          uriParameters:
+            namespace:
+              displayName: namespace
+            itemNumber:
+              displayName: Item Number
+        ignored: false

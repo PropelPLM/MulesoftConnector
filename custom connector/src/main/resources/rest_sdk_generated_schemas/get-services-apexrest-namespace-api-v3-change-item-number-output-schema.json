@@ -1,0 +1,757 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$ref": "#/definitions/change",
+  "definitions": {
+    "items_2": {
+      "additionalProperties": true,
+      "type": "object",
+      "required": [
+        "PDLM__Item_Revision__r",
+        "PDLM__Item__r",
+        "PDLM__Item_Revision__c",
+        "PDLM__Find_Number__c",
+        "PDLM__Quantity__c",
+        "PDLM__Item__c",
+        "Parent_Item_Number__c",
+        "Id"
+      ],
+      "properties": {
+        "PDLM__Quantity__c": {"type": "number"},
+        "PDLM__Item__r": {"$ref": "#/definitions/PDLM__Item__r"},
+        "PDLM__Item__c": {"type": "string"},
+        "PDLM__Item_Revision__r": {"$ref": "#/definitions/default"},
+        "PDLM__Item_Revision__c": {"type": "string"},
+        "PDLM__Find_Number__c": {"type": "number"},
+        "Id": {"type": "string"},
+        "Parent_Item_Number__c": {"type": "string"}
+      }
+    },
+    "default": {
+      "additionalProperties": true,
+      "type": "object",
+      "required": [
+        "attributes",
+        "Id",
+        "Name"
+      ],
+      "properties": {
+        "attributes": {"$ref": "#/definitions/default_1"},
+        "Id": {"type": "string"},
+        "Name": {"anyOf": [
+          {"type": "null"},
+          {"type": "string"}
+        ]}
+      }
+    },
+    "default_1": {
+      "additionalProperties": true,
+      "type": "object",
+      "required": [
+        "type",
+        "url"
+      ],
+      "properties": {
+        "type": {"type": "string"},
+        "url": {"type": "string"}
+      }
+    },
+    "PDLM__Item__r": {
+      "additionalProperties": true,
+      "type": "object",
+      "required": [
+        "attributes",
+        "Id",
+        "Name",
+        "PDLM__Description__c",
+        "PDLM__Category_Name_Formula__c",
+        "PDLM__Latest_Revision__c",
+        "PDLM__Latest_Revision__r"
+      ],
+      "properties": {
+        "PDLM__Description__c": {"type": "string"},
+        "PDLM__Latest_Revision__r": {
+          "additionalProperties": true,
+          "type": "object",
+          "required": [
+            "attributes",
+            "Id",
+            "PDLM__Revision__c"
+          ],
+          "properties": {
+            "PDLM__Revision__c": {"type": "string"},
+            "attributes": {"$ref": "#/definitions/default_1"},
+            "Id": {"type": "string"}
+          }
+        },
+        "PDLM__Latest_Revision__c": {"type": "string"},
+        "PDLM__Category_Name_Formula__c": {"type": "string"},
+        "attributes": {"$ref": "#/definitions/default_1"},
+        "Id": {"type": "string"},
+        "Name": {"anyOf": [
+          {"type": "null"},
+          {"type": "string"}
+        ]}
+      }
+    },
+    "PDLM__Master_Item__r": {
+      "additionalProperties": true,
+      "type": "object",
+      "required": [
+        "attributes",
+        "Id",
+        "Name",
+        "PDLM__Category__c",
+        "OwnerId",
+        "PDLM__Category__r",
+        "Owner"
+      ],
+      "properties": {
+        "Owner": {"$ref": "#/definitions/default"},
+        "OwnerId": {"type": "string"},
+        "PDLM__Category__r": {"$ref": "#/definitions/default"},
+        "attributes": {"$ref": "#/definitions/default_1"},
+        "Id": {"type": "string"},
+        "PDLM__Category__c": {"type": "string"},
+        "Name": {"type": "string"}
+      }
+    },
+    "change": {
+      "additionalProperties": true,
+      "type": "object",
+      "required": [
+        "PDLM__Lifecycle__r",
+        "Owner",
+        "PDLM__Status_lk__r",
+        "CreatedBy",
+        "PDLM__Category__r",
+        "PDLM__Lifecycle__c",
+        "LastModifiedDate",
+        "PDLM__Approved__c",
+        "PDLM__Closed__c",
+        "PDLM__Cancelled__c",
+        "PDLM__In_Approval_Process__c",
+        "OwnerId",
+        "PDLM__Status_lk__c",
+        "CreatedById",
+        "PDLM__Approved_Date_Time__c",
+        "CreatedDate",
+        "Change_Status_Name__c",
+        "PDLM__Description_5000__c",
+        "PDLM__Title__c",
+        "PDLM__Category__c",
+        "Name",
+        "Id",
+        "next",
+        "affectedItems",
+        "attachments"
+      ],
+      "properties": {
+        "next": {"type": "string"},
+        "LastModifiedDate": {"type": "string"},
+        "Owner": {"$ref": "#/definitions/default"},
+        "attachments": {"type": "array"},
+        "PDLM__Approved__c": {"type": "boolean"},
+        "PDLM__Description_5000__c": {"type": "string"},
+        "PDLM__Status_lk__r": {"$ref": "#/definitions/default"},
+        "PDLM__Title__c": {"type": "string"},
+        "Name": {"type": "string"},
+        "Change_Status_Name__c": {"type": "string"},
+        "OwnerId": {"type": "string"},
+        "CreatedById": {"type": "string"},
+        "affectedItems": {
+          "type": "array",
+          "items": {"$ref": "#/definitions/items"}
+        },
+        "PDLM__Status_lk__c": {"type": "string"},
+        "PDLM__Cancelled__c": {"type": "boolean"},
+        "PDLM__Approved_Date_Time__c": {"type": "string"},
+        "CreatedBy": {"$ref": "#/definitions/default"},
+        "PDLM__Closed__c": {"type": "boolean"},
+        "PDLM__Lifecycle__r": {"$ref": "#/definitions/default"},
+        "PDLM__Category__r": {"$ref": "#/definitions/default"},
+        "CreatedDate": {"type": "string"},
+        "PDLM__Lifecycle__c": {"type": "string"},
+        "PDLM__Category__c": {"type": "string"},
+        "Id": {"type": "string"},
+        "PDLM__In_Approval_Process__c": {"type": "boolean"}
+      },
+      "example": {
+        "next": "",
+        "LastModifiedDate": "2024-03-15T17:00:50.000Z",
+        "Owner": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v60.0/sobjects/User/005am000001DW1VAAW"
+          },
+          "Id": "005am000001DW1VAAW",
+          "Name": "Kevin Crothers"
+        },
+        "attachments": [],
+        "PDLM__Approved__c": true,
+        "PDLM__Description_5000__c": "Release RC Camaro Mechanical Assemblies to Rev A",
+        "PDLM__Status_lk__r": {
+          "attributes": {
+            "type": "PDLM__Change_Phase__c",
+            "url": "/services/data/v60.0/sobjects/PDLM__Change_Phase__c/a05am000001DWWlAAO"
+          },
+          "Id": "a05am000001DWWlAAO",
+          "Name": "Released"
+        },
+        "PDLM__Title__c": "Release RC Camaro Mechanical Assemblies to Rev A",
+        "Name": "CO-00017",
+        "Change_Status_Name__c": "Released",
+        "OwnerId": "005am000001DW1VAAW",
+        "CreatedById": "005am000001DW1VAAW",
+        "affectedItems": [
+          {
+            "PDLM__Lifecycle_Phase__c": "Production",
+            "PDLM__Revision__c": "A",
+            "PDLM__Description__c": "Rear Axle Assembly \u2013 RC Car",
+            "bom": [
+              {
+                "PDLM__Quantity__c": 2,
+                "PDLM__Item__r": {
+                  "PDLM__Description__c": "Wheel Assembly \u2013 RC Car",
+                  "PDLM__Latest_Revision__r": {
+                    "PDLM__Revision__c": "A",
+                    "attributes": {
+                      "type": "PDLM__Item_Revision__c",
+                      "url": "/services/data/v60.0/sobjects/PDLM__Item_Revision__c/a0Dam000003su5uEAA"
+                    },
+                    "Id": "a0Dam000003su5uEAA"
+                  },
+                  "PDLM__Latest_Revision__c": "a0Dam000003su5uEAA",
+                  "PDLM__Category_Name_Formula__c": "Assembly",
+                  "attributes": {
+                    "type": "PDLM__Item__c",
+                    "url": "/services/data/v60.0/sobjects/PDLM__Item__c/a0Eam000000pcO3EAI"
+                  },
+                  "Id": "a0Eam000000pcO3EAI",
+                  "Name": "RC-100-4300"
+                },
+                "PDLM__Item__c": "a0Eam000000pcO3EAI",
+                "PDLM__Item_Revision__r": {
+                  "attributes": {
+                    "type": "PDLM__Item_Revision__c",
+                    "url": "/services/data/v60.0/sobjects/PDLM__Item_Revision__c/a0Dam000003su5qEAA"
+                  },
+                  "Id": "a0Dam000003su5qEAA",
+                  "Name": "RC-100-4200:A"
+                },
+                "PDLM__Item_Revision__c": "a0Dam000003su5qEAA",
+                "PDLM__Find_Number__c": 20,
+                "Id": "a01am00000GCEd5AAH",
+                "Parent_Item_Number__c": "RC-100-4200"
+              },
+              {
+                "PDLM__Quantity__c": 1,
+                "PDLM__Item__r": {
+                  "PDLM__Description__c": "Rear Axle \u2013 RC Car",
+                  "PDLM__Latest_Revision__r": {
+                    "PDLM__Revision__c": "A",
+                    "attributes": {
+                      "type": "PDLM__Item_Revision__c",
+                      "url": "/services/data/v60.0/sobjects/PDLM__Item_Revision__c/a0Dam000003su5ZEAQ"
+                    },
+                    "Id": "a0Dam000003su5ZEAQ"
+                  },
+                  "PDLM__Latest_Revision__c": "a0Dam000003su5ZEAQ",
+                  "PDLM__Category_Name_Formula__c": "Mechanical Part",
+                  "attributes": {
+                    "type": "PDLM__Item__c",
+                    "url": "/services/data/v60.0/sobjects/PDLM__Item__c/a0Eam000000pcO4EAI"
+                  },
+                  "Id": "a0Eam000000pcO4EAI",
+                  "Name": "RC-100-4210"
+                },
+                "PDLM__Item__c": "a0Eam000000pcO4EAI",
+                "PDLM__Item_Revision__r": {
+                  "attributes": {
+                    "type": "PDLM__Item_Revision__c",
+                    "url": "/services/data/v60.0/sobjects/PDLM__Item_Revision__c/a0Dam000003su5qEAA"
+                  },
+                  "Id": "a0Dam000003su5qEAA",
+                  "Name": "RC-100-4200:A"
+                },
+                "PDLM__Item_Revision__c": "a0Dam000003su5qEAA",
+                "PDLM__Find_Number__c": 10,
+                "Id": "a01am00000GCEd6AAH",
+                "Parent_Item_Number__c": "RC-100-4200"
+              }
+            ],
+            "attachments": [{
+              "LastModifiedDate": "2024-03-15T17:00:50.000Z",
+              "Owner": {
+                "attributes": {
+                  "type": "Name",
+                  "url": "/services/data/v60.0/sobjects/User/005am000001DW1VAAW"
+                },
+                "Id": "005am000001DW1VAAW",
+                "Name": "Kevin Crothers"
+              },
+              "PDLM__File_Extension__c": "pdf",
+              "PDLM__Item_Revision__r": {
+                "attributes": {
+                  "type": "PDLM__Item_Revision__c",
+                  "url": "/services/data/v60.0/sobjects/PDLM__Item_Revision__c/a0Dam000003su5qEAA"
+                },
+                "Id": "a0Dam000003su5qEAA",
+                "Name": "RC-100-4200:A"
+              },
+              "PDLM__Content_Id__c": "069am000000thntAAA",
+              "PDLM__Document_Version__c": "068am000000e6cPAAQ",
+              "PDLM__Document_Size__c": 1629270,
+              "OwnerId": "005am000001DW1VAAW",
+              "CreatedDate": "2024-03-15T17:00:50.000Z",
+              "PDLM__Item_Revision__c": "a0Dam000003su5qEAA",
+              "Id": "a0Aam000000mFrlEAE",
+              "PDLM__Document_Title__c": "RC-100-4200-2D.pdf",
+              "PDLM__Last_Modified_Date__c": "2023-12-12T22:32:56.000Z",
+              "PDLM__Version_Number__c": "1"
+            }],
+            "PDLM__Master_Item__r": {
+              "Owner": {
+                "attributes": {
+                  "type": "Name",
+                  "url": "/services/data/v60.0/sobjects/User/005am000001DW1VAAW"
+                },
+                "Id": "005am000001DW1VAAW",
+                "Name": "Kevin Crothers"
+              },
+              "OwnerId": "005am000001DW1VAAW",
+              "PDLM__Category__r": {
+                "attributes": {
+                  "type": "PDLM__Category__c",
+                  "url": "/services/data/v60.0/sobjects/PDLM__Category__c/a04am000000Up34AAC"
+                },
+                "Id": "a04am000000Up34AAC",
+                "Name": "Assembly"
+              },
+              "attributes": {
+                "type": "PDLM__Item__c",
+                "url": "/services/data/v60.0/sobjects/PDLM__Item__c/a0Eam000000pcNqEAI"
+              },
+              "Id": "a0Eam000000pcNqEAI",
+              "PDLM__Category__c": "a04am000000Up34AAC",
+              "Name": "RC-100-4200"
+            },
+            "CreatedDate": "2024-03-15T17:00:50.000Z",
+            "PDLM__Released_Date_Time__c": "2023-12-18T23:59:45.000Z",
+            "PDLM__Master_Item__c": "a0Eam000000pcNqEAI",
+            "Id": "a0Dam000003su5qEAA"
+          },
+          {
+            "PDLM__Lifecycle_Phase__c": "Production",
+            "PDLM__Revision__c": "A",
+            "PDLM__Description__c": "Front Axle Assembly \u2013 RC Car",
+            "bom": [
+              {
+                "PDLM__Quantity__c": 1,
+                "PDLM__Item__r": {
+                  "PDLM__Description__c": "Front Axle - RC Car",
+                  "PDLM__Latest_Revision__r": {
+                    "PDLM__Revision__c": "A",
+                    "attributes": {
+                      "type": "PDLM__Item_Revision__c",
+                      "url": "/services/data/v60.0/sobjects/PDLM__Item_Revision__c/a0Dam000003su5YEAQ"
+                    },
+                    "Id": "a0Dam000003su5YEAQ"
+                  },
+                  "PDLM__Latest_Revision__c": "a0Dam000003su5YEAQ",
+                  "PDLM__Category_Name_Formula__c": "Mechanical Part",
+                  "attributes": {
+                    "type": "PDLM__Item__c",
+                    "url": "/services/data/v60.0/sobjects/PDLM__Item__c/a0Eam000000pcO2EAI"
+                  },
+                  "Id": "a0Eam000000pcO2EAI",
+                  "Name": "RC-100-4110"
+                },
+                "PDLM__Item__c": "a0Eam000000pcO2EAI",
+                "PDLM__Item_Revision__r": {
+                  "attributes": {
+                    "type": "PDLM__Item_Revision__c",
+                    "url": "/services/data/v60.0/sobjects/PDLM__Item_Revision__c/a0Dam000003su5rEAA"
+                  },
+                  "Id": "a0Dam000003su5rEAA",
+                  "Name": "RC-100-4100:A"
+                },
+                "PDLM__Item_Revision__c": "a0Dam000003su5rEAA",
+                "PDLM__Find_Number__c": 10,
+                "Id": "a01am00000GCEd3AAH",
+                "Parent_Item_Number__c": "RC-100-4100"
+              },
+              {
+                "PDLM__Quantity__c": 2,
+                "PDLM__Item__r": {
+                  "PDLM__Description__c": "Wheel Assembly \u2013 RC Car",
+                  "PDLM__Latest_Revision__r": {
+                    "PDLM__Revision__c": "A",
+                    "attributes": {
+                      "type": "PDLM__Item_Revision__c",
+                      "url": "/services/data/v60.0/sobjects/PDLM__Item_Revision__c/a0Dam000003su5uEAA"
+                    },
+                    "Id": "a0Dam000003su5uEAA"
+                  },
+                  "PDLM__Latest_Revision__c": "a0Dam000003su5uEAA",
+                  "PDLM__Category_Name_Formula__c": "Assembly",
+                  "attributes": {
+                    "type": "PDLM__Item__c",
+                    "url": "/services/data/v60.0/sobjects/PDLM__Item__c/a0Eam000000pcO3EAI"
+                  },
+                  "Id": "a0Eam000000pcO3EAI",
+                  "Name": "RC-100-4300"
+                },
+                "PDLM__Item__c": "a0Eam000000pcO3EAI",
+                "PDLM__Item_Revision__r": {
+                  "attributes": {
+                    "type": "PDLM__Item_Revision__c",
+                    "url": "/services/data/v60.0/sobjects/PDLM__Item_Revision__c/a0Dam000003su5rEAA"
+                  },
+                  "Id": "a0Dam000003su5rEAA",
+                  "Name": "RC-100-4100:A"
+                },
+                "PDLM__Item_Revision__c": "a0Dam000003su5rEAA",
+                "PDLM__Find_Number__c": 20,
+                "Id": "a01am00000GCEd4AAH",
+                "Parent_Item_Number__c": "RC-100-4100"
+              }
+            ],
+            "attachments": [{
+              "LastModifiedDate": "2024-03-15T17:00:50.000Z",
+              "Owner": {
+                "attributes": {
+                  "type": "Name",
+                  "url": "/services/data/v60.0/sobjects/User/005am000001DW1VAAW"
+                },
+                "Id": "005am000001DW1VAAW",
+                "Name": "Kevin Crothers"
+              },
+              "PDLM__File_Extension__c": "pdf",
+              "PDLM__Item_Revision__r": {
+                "attributes": {
+                  "type": "PDLM__Item_Revision__c",
+                  "url": "/services/data/v60.0/sobjects/PDLM__Item_Revision__c/a0Dam000003su5rEAA"
+                },
+                "Id": "a0Dam000003su5rEAA",
+                "Name": "RC-100-4100:A"
+              },
+              "PDLM__Content_Id__c": "069am000000thneAAA",
+              "PDLM__Document_Version__c": "068am000000e6cNAAQ",
+              "PDLM__Document_Size__c": 1675166,
+              "OwnerId": "005am000001DW1VAAW",
+              "CreatedDate": "2024-03-15T17:00:50.000Z",
+              "PDLM__Item_Revision__c": "a0Dam000003su5rEAA",
+              "Id": "a0Aam000000mFrkEAE",
+              "PDLM__Document_Title__c": "RC-100-4100-2D.pdf",
+              "PDLM__Last_Modified_Date__c": "2023-12-12T22:32:46.000Z",
+              "PDLM__Version_Number__c": "1"
+            }],
+            "PDLM__Master_Item__r": {
+              "Owner": {
+                "attributes": {
+                  "type": "Name",
+                  "url": "/services/data/v60.0/sobjects/User/005am000001DW1VAAW"
+                },
+                "Id": "005am000001DW1VAAW",
+                "Name": "Kevin Crothers"
+              },
+              "OwnerId": "005am000001DW1VAAW",
+              "PDLM__Category__r": {
+                "attributes": {
+                  "type": "PDLM__Category__c",
+                  "url": "/services/data/v60.0/sobjects/PDLM__Category__c/a04am000000Up34AAC"
+                },
+                "Id": "a04am000000Up34AAC",
+                "Name": "Assembly"
+              },
+              "attributes": {
+                "type": "PDLM__Item__c",
+                "url": "/services/data/v60.0/sobjects/PDLM__Item__c/a0Eam000000pcNoEAI"
+              },
+              "Id": "a0Eam000000pcNoEAI",
+              "PDLM__Category__c": "a04am000000Up34AAC",
+              "Name": "RC-100-4100"
+            },
+            "CreatedDate": "2024-03-15T17:00:50.000Z",
+            "PDLM__Released_Date_Time__c": "2023-12-18T23:59:45.000Z",
+            "PDLM__Master_Item__c": "a0Eam000000pcNoEAI",
+            "Id": "a0Dam000003su5rEAA"
+          },
+          {
+            "PDLM__Lifecycle_Phase__c": "Production",
+            "PDLM__Revision__c": "A",
+            "PDLM__Description__c": "Wheel Assembly \u2013 RC Car",
+            "bom": [
+              {
+                "PDLM__Quantity__c": 1,
+                "PDLM__Item__r": {
+                  "PDLM__Description__c": "Tire \u2013 RC Car",
+                  "PDLM__Latest_Revision__r": {
+                    "PDLM__Revision__c": "A",
+                    "attributes": {
+                      "type": "PDLM__Item_Revision__c",
+                      "url": "/services/data/v60.0/sobjects/PDLM__Item_Revision__c/a0Dam000003su5aEAA"
+                    },
+                    "Id": "a0Dam000003su5aEAA"
+                  },
+                  "PDLM__Latest_Revision__c": "a0Dam000003su5aEAA",
+                  "PDLM__Category_Name_Formula__c": "Mechanical Part",
+                  "attributes": {
+                    "type": "PDLM__Item__c",
+                    "url": "/services/data/v60.0/sobjects/PDLM__Item__c/a0Eam000000pcO5EAI"
+                  },
+                  "Id": "a0Eam000000pcO5EAI",
+                  "Name": "RC-100-4330"
+                },
+                "PDLM__Item__c": "a0Eam000000pcO5EAI",
+                "PDLM__Item_Revision__r": {
+                  "attributes": {
+                    "type": "PDLM__Item_Revision__c",
+                    "url": "/services/data/v60.0/sobjects/PDLM__Item_Revision__c/a0Dam000003su5uEAA"
+                  },
+                  "Id": "a0Dam000003su5uEAA",
+                  "Name": "RC-100-4300:A"
+                },
+                "PDLM__Item_Revision__c": "a0Dam000003su5uEAA",
+                "PDLM__Find_Number__c": 30,
+                "Id": "a01am00000GCEd7AAH",
+                "Parent_Item_Number__c": "RC-100-4300"
+              },
+              {
+                "PDLM__Quantity__c": 1,
+                "PDLM__Item__r": {
+                  "PDLM__Description__c": "Rim \u2013 RC Car",
+                  "PDLM__Latest_Revision__r": {
+                    "PDLM__Revision__c": "A",
+                    "attributes": {
+                      "type": "PDLM__Item_Revision__c",
+                      "url": "/services/data/v60.0/sobjects/PDLM__Item_Revision__c/a0Dam000003su5bEAA"
+                    },
+                    "Id": "a0Dam000003su5bEAA"
+                  },
+                  "PDLM__Latest_Revision__c": "a0Dam000003su5bEAA",
+                  "PDLM__Category_Name_Formula__c": "Mechanical Part",
+                  "attributes": {
+                    "type": "PDLM__Item__c",
+                    "url": "/services/data/v60.0/sobjects/PDLM__Item__c/a0Eam000000pcO6EAI"
+                  },
+                  "Id": "a0Eam000000pcO6EAI",
+                  "Name": "RC-100-4310"
+                },
+                "PDLM__Item__c": "a0Eam000000pcO6EAI",
+                "PDLM__Item_Revision__r": {
+                  "attributes": {
+                    "type": "PDLM__Item_Revision__c",
+                    "url": "/services/data/v60.0/sobjects/PDLM__Item_Revision__c/a0Dam000003su5uEAA"
+                  },
+                  "Id": "a0Dam000003su5uEAA",
+                  "Name": "RC-100-4300:A"
+                },
+                "PDLM__Item_Revision__c": "a0Dam000003su5uEAA",
+                "PDLM__Find_Number__c": 10,
+                "Id": "a01am00000GCEd8AAH",
+                "Parent_Item_Number__c": "RC-100-4300"
+              },
+              {
+                "PDLM__Quantity__c": 1,
+                "PDLM__Item__r": {
+                  "PDLM__Description__c": "Hub \u2013 RC Car",
+                  "PDLM__Latest_Revision__r": {
+                    "PDLM__Revision__c": "A",
+                    "attributes": {
+                      "type": "PDLM__Item_Revision__c",
+                      "url": "/services/data/v60.0/sobjects/PDLM__Item_Revision__c/a0Dam000003su5cEAA"
+                    },
+                    "Id": "a0Dam000003su5cEAA"
+                  },
+                  "PDLM__Latest_Revision__c": "a0Dam000003su5cEAA",
+                  "PDLM__Category_Name_Formula__c": "Mechanical Part",
+                  "attributes": {
+                    "type": "PDLM__Item__c",
+                    "url": "/services/data/v60.0/sobjects/PDLM__Item__c/a0Eam000000pcO7EAI"
+                  },
+                  "Id": "a0Eam000000pcO7EAI",
+                  "Name": "RC-100-4320"
+                },
+                "PDLM__Item__c": "a0Eam000000pcO7EAI",
+                "PDLM__Item_Revision__r": {
+                  "attributes": {
+                    "type": "PDLM__Item_Revision__c",
+                    "url": "/services/data/v60.0/sobjects/PDLM__Item_Revision__c/a0Dam000003su5uEAA"
+                  },
+                  "Id": "a0Dam000003su5uEAA",
+                  "Name": "RC-100-4300:A"
+                },
+                "PDLM__Item_Revision__c": "a0Dam000003su5uEAA",
+                "PDLM__Find_Number__c": 20,
+                "Id": "a01am00000GCEd9AAH",
+                "Parent_Item_Number__c": "RC-100-4300"
+              }
+            ],
+            "attachments": [{
+              "LastModifiedDate": "2024-03-15T17:00:50.000Z",
+              "Owner": {
+                "attributes": {
+                  "type": "Name",
+                  "url": "/services/data/v60.0/sobjects/User/005am000001DW1VAAW"
+                },
+                "Id": "005am000001DW1VAAW",
+                "Name": "Kevin Crothers"
+              },
+              "PDLM__File_Extension__c": "pdf",
+              "PDLM__Item_Revision__r": {
+                "attributes": {
+                  "type": "PDLM__Item_Revision__c",
+                  "url": "/services/data/v60.0/sobjects/PDLM__Item_Revision__c/a0Dam000003su5uEAA"
+                },
+                "Id": "a0Dam000003su5uEAA",
+                "Name": "RC-100-4300:A"
+              },
+              "PDLM__Content_Id__c": "069am000000thnjAAA",
+              "PDLM__Document_Version__c": "068am000000e6cJAAQ",
+              "PDLM__Document_Size__c": 1463779,
+              "OwnerId": "005am000001DW1VAAW",
+              "CreatedDate": "2024-03-15T17:00:50.000Z",
+              "PDLM__Item_Revision__c": "a0Dam000003su5uEAA",
+              "Id": "a0Aam000000mFrnEAE",
+              "PDLM__Document_Title__c": "RC-100-4300-2D.pdf",
+              "PDLM__Last_Modified_Date__c": "2023-12-12T22:33:09.000Z",
+              "PDLM__Version_Number__c": "1"
+            }],
+            "PDLM__Master_Item__r": {
+              "Owner": {
+                "attributes": {
+                  "type": "Name",
+                  "url": "/services/data/v60.0/sobjects/User/005am000001DW1VAAW"
+                },
+                "Id": "005am000001DW1VAAW",
+                "Name": "Kevin Crothers"
+              },
+              "OwnerId": "005am000001DW1VAAW",
+              "PDLM__Category__r": {
+                "attributes": {
+                  "type": "PDLM__Category__c",
+                  "url": "/services/data/v60.0/sobjects/PDLM__Category__c/a04am000000Up34AAC"
+                },
+                "Id": "a04am000000Up34AAC",
+                "Name": "Assembly"
+              },
+              "attributes": {
+                "type": "PDLM__Item__c",
+                "url": "/services/data/v60.0/sobjects/PDLM__Item__c/a0Eam000000pcO3EAI"
+              },
+              "Id": "a0Eam000000pcO3EAI",
+              "PDLM__Category__c": "a04am000000Up34AAC",
+              "Name": "RC-100-4300"
+            },
+            "CreatedDate": "2024-03-15T17:00:50.000Z",
+            "PDLM__Released_Date_Time__c": "2023-12-18T23:59:45.000Z",
+            "PDLM__Master_Item__c": "a0Eam000000pcO3EAI",
+            "Id": "a0Dam000003su5uEAA"
+          }
+        ],
+        "PDLM__Status_lk__c": "a05am000001DWWlAAO",
+        "PDLM__Cancelled__c": false,
+        "PDLM__Approved_Date_Time__c": "2023-12-18T23:59:45.000Z",
+        "CreatedBy": {
+          "attributes": {
+            "type": "User",
+            "url": "/services/data/v60.0/sobjects/User/005am000001DW1VAAW"
+          },
+          "Id": "005am000001DW1VAAW",
+          "Name": "Kevin Crothers"
+        },
+        "PDLM__Closed__c": false,
+        "PDLM__Lifecycle__r": {
+          "attributes": {
+            "type": "PDLM__Lifecycle__c",
+            "url": "/services/data/v60.0/sobjects/PDLM__Lifecycle__c/a0Fam000000pzt6EAA"
+          },
+          "Id": "a0Fam000000pzt6EAA",
+          "Name": "Change Order Lifecycle"
+        },
+        "PDLM__Category__r": {
+          "attributes": {
+            "type": "PDLM__Category__c",
+            "url": "/services/data/v60.0/sobjects/PDLM__Category__c/a04am000000Up3JAAS"
+          },
+          "Id": "a04am000000Up3JAAS",
+          "Name": "Change Order"
+        },
+        "CreatedDate": "2024-03-15T17:00:50.000Z",
+        "PDLM__Lifecycle__c": "a0Fam000000pzt6EAA",
+        "PDLM__Category__c": "a04am000000Up3JAAS",
+        "Id": "a06am000001tMpfAAE",
+        "PDLM__In_Approval_Process__c": false
+      }
+    },
+    "items_3": {
+      "additionalProperties": true,
+      "type": "object",
+      "required": [
+        "Owner",
+        "PDLM__Item_Revision__r",
+        "PDLM__Last_Modified_Date__c",
+        "LastModifiedDate",
+        "PDLM__File_Extension__c",
+        "PDLM__Content_Id__c",
+        "PDLM__Document_Title__c",
+        "PDLM__Version_Number__c",
+        "CreatedDate",
+        "OwnerId",
+        "PDLM__Document_Size__c",
+        "PDLM__Document_Version__c",
+        "PDLM__Item_Revision__c",
+        "Id"
+      ],
+      "properties": {
+        "LastModifiedDate": {"type": "string"},
+        "Owner": {"$ref": "#/definitions/default"},
+        "PDLM__File_Extension__c": {"type": "string"},
+        "PDLM__Item_Revision__r": {"$ref": "#/definitions/default"},
+        "PDLM__Content_Id__c": {"type": "string"},
+        "PDLM__Document_Version__c": {"type": "string"},
+        "PDLM__Document_Size__c": {"type": "number"},
+        "OwnerId": {"type": "string"},
+        "CreatedDate": {"type": "string"},
+        "PDLM__Item_Revision__c": {"type": "string"},
+        "Id": {"type": "string"},
+        "PDLM__Document_Title__c": {"type": "string"},
+        "PDLM__Last_Modified_Date__c": {"type": "string"},
+        "PDLM__Version_Number__c": {"type": "string"}
+      }
+    },
+    "items": {
+      "additionalProperties": true,
+      "type": "object",
+      "required": [
+        "PDLM__Master_Item__r",
+        "CreatedDate",
+        "PDLM__Master_Item__c",
+        "PDLM__Released_Date_Time__c",
+        "PDLM__Lifecycle_Phase__c",
+        "PDLM__Revision__c",
+        "PDLM__Description__c",
+        "Id"
+      ],
+      "properties": {
+        "PDLM__Lifecycle_Phase__c": {"type": "string"},
+        "PDLM__Revision__c": {"type": "string"},
+        "PDLM__Description__c": {"type": "string"},
+        "bom": {
+          "type": "array",
+          "items": {"$ref": "#/definitions/items_2"}
+        },
+        "attachments": {
+          "type": "array",
+          "items": {"$ref": "#/definitions/items_3"}
+        },
+        "PDLM__Master_Item__r": {"$ref": "#/definitions/PDLM__Master_Item__r"},
+        "CreatedDate": {"type": "string"},
+        "PDLM__Released_Date_Time__c": {"type": "string"},
+        "PDLM__Master_Item__c": {"type": "string"},
+        "Id": {"type": "string"}
+      }
+    }
+  }
+}

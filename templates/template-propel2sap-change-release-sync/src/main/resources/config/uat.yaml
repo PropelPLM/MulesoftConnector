@@ -1,0 +1,15 @@
+# Properties to be used on the UAT environment
+
+#salesforce connections
+sfdc:
+  host: ""
+  username: ""
+  tokenEndpoint: "https://test.salesforce.com/services/oauth2/token"
+  oauth:
+    host: ""
+    
+# SAP S/4HANA Cloud Connector
+sap:
+  s4hana.baseUrl: ""
+  s4hana.username: ""
+  

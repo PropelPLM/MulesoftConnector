@@ -1,0 +1,79 @@
+#%RAML 1.0
+title: propel
+baseUri: https://propel-api-url
+description: Propel Custom Connector
+version: v1
+mediaType: 
+- application/json
+
+types:
+  item: !include types/item.raml
+  change: !include types/change.raml
+  itemUpdate: !include types/itemUpdate.raml
+traits:
+  errorResponses: !include traits/errorResponses.raml
+
+securitySchemes:
+  oauth: !include security/oauth2-authentication.raml
+
+securedBy:
+  - oauth
+
+/services/apexrest:
+  /{namespace}:
+    /api/v2/item/{itemNumber}:
+      get:
+        displayName: Get Item
+        description: Get Item and all item revisions.
+        is:
+          - errorResponses
+        responses:
+          200:
+            body:
+              application/json:
+                type: item
+                example: !include examples/response/get-item-200-response.json
+      put:
+        displayName: Update Item
+        description: Updates a specified item's item revision fields. If the item is released and no drafts exist, a new draft will be created.
+        is:
+          - errorResponses
+        body:
+          application/json:
+            type: itemUpdate
+            example: !include examples/request/put-item-request.json
+        responses:
+          200:
+            body:
+              application/json:
+                type: item
+                example: !include examples/response/put-item-200-response.json
+              
+    /api/v3/change/{itemNumber}:
+      get:
+        displayName: Get Change
+        description: Get Propel Change
+        is:
+          - errorResponses
+        queryParameters:
+          affectedItems?:
+            description: Affected Items
+            type: boolean
+          bom?:
+            description: BOM
+            type: boolean
+          amls?:
+            description: AMLS
+            type: boolean
+          attachments?:
+            description: Attachments
+            type: boolean
+          useXMLExportFieldset?:
+            description: Use XML Export Fieldset
+            type: boolean
+        responses:
+          200:
+            body:
+              application/json:
+                type: change
+                example: !include examples/response/get-change-200-response.json

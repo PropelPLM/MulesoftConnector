@@ -1,0 +1,16 @@
+cron:
+  timeZone: ""
+  schedule:
+    vendortosap:
+      order:
+        expression: "0 0 0/4 1/1 * ? *" #every 4 hrs
+    vendortopropel:
+      order:
+        expression: "0 0 0/4 1/1 * ? *" #every 4 hrs
+        
+#Propel Platform Event
+sfdc:
+  channel: 
+    changeRelease: "/event/Create_FO_Seko__e"
+  idempotent:
+    entryTtl: "600"

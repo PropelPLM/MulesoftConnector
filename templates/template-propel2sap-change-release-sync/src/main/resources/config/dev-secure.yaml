@@ -1,0 +1,12 @@
+# Properties to be used on the Development environment
+
+
+sfdc:
+  password: "![x5L3GfMGPArqTBM9yBeRnh3khFATFOHki4rsBqterI4=]"
+  securityToken: "![FLEgDkynZL3eIz6PDLI6Ssq3spTHe7tNy0Jg9OnGA6Y=]"
+  consumerKey: "![ZffpZDOVyZyiImJWXfv70RAiJC44DwLRK/UY2vvulBgR01e0qc8GK8CjpQowjaY/GHyeJqm0twNy5QKIPkUYPbCnGL1t/+p6ob3kh/mUBXIUCebXFGZtie8isNX0fhC6]"
+  consumerSecret: "![UBBhb/t45NaLtG/UQZqP2vOoDERKHhJXChUZZ03Te7Bd/ykxNw9WPWGuaV1EQm4pxqOTyZMgzADlORoL/CpNeAfKz68PkE4TAMYQC8+C+vI=]"
+  
+# SAP S/4HANA Cloud Connector
+sap:
+  s4hana.password: "![EKeF9k5FRoklhDAdL4MEcw==]"

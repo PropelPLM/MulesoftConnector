@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:sap="http://www.mulesoft.org/schema/mule/sap" xmlns:propel="http://www.mulesoft.org/schema/mule/propel"
+	xmlns:api-gateway="http://www.mulesoft.org/schema/mule/api-gateway"
+	xmlns:salesforce="http://www.mulesoft.org/schema/mule/salesforce" xmlns:secure-properties="http://www.mulesoft.org/schema/mule/secure-properties" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd
+http://www.mulesoft.org/schema/mule/salesforce http://www.mulesoft.org/schema/mule/salesforce/current/mule-salesforce.xsd
+http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/mule/api-gateway/current/mule-api-gateway.xsd
+http://www.mulesoft.org/schema/mule/propel http://www.mulesoft.org/schema/mule/propel/current/mule-propel.xsd
+http://www.mulesoft.org/schema/mule/sap http://www.mulesoft.org/schema/mule/sap/current/mule-sap.xsd">
+	<global-property doc:name="Global Property" doc:id="ad49351f-0833-4f09-94d8-9a55743a7228" name="mule.env" value="dev"/>
+	<configuration-properties doc:name="Configuration properties" doc:id="03644934-9d4c-4c67-a79a-a0dec2fe9c76" file="config/${mule.env}.yaml" />
+	<configuration-properties doc:name="Configuration properties" doc:id="22c68575-854c-4d7a-aac3-1fc15d356788" file="config/${mule.env}-secure.yaml" />
+	<secure-properties:config name="Secure_Properties_Config" doc:name="Secure Properties Config" doc:id="5f0dc54f-e373-4d29-8830-180491a97ca6" key="${key}" file="config/${mule.env}-secure.yaml"/>
+	<global-property doc:name="Global Property" doc:id="f756bc11-f12b-4f38-a4bb-d35571ae4842" name="key" value="123456789" />
+	<salesforce:sfdc-config name="Salesforce_Config" doc:name="Salesforce Config" doc:id="67e8c583-5b48-462f-a09a-2d315d72175d" >
+		<salesforce:oauth-user-pass-connection consumerKey="${secure::sfdc.consumerKey}" consumerSecret="${secure::sfdc.consumerSecret}" username="${sfdc.username}" password="${secure::sfdc.password}" securityToken="${secure::sfdc.securityToken}" tokenEndpoint="${sfdc.tokenEndpoint}"/>
+	</salesforce:sfdc-config>
+	<configuration-properties doc:name="Configuration properties" doc:id="3bfcbea0-b695-464e-924f-111870ca239b" file="config/common.yaml" />
+	<propel:config name="Propel_Config" doc:name="Propel Config" doc:id="f9758bf2-d368-4289-b4c2-2b9f244250f7" >
+		<propel:oauth-connection baseUri="${sfdc.baseUrl}" >
+			<propel:oauth-client-credentials clientId="${sfdc.consumerKey}" clientSecret="${secure::sfdc.consumerSecret}" tokenUrl="${sfdc.tokenUrl}" />
+		</propel:oauth-connection>
+	</propel:config>
+	<sap:sap-config name="SAP_Config" doc:name="SAP Config" doc:id="60a1b453-39b8-42bc-94b6-beb107ddbac1" >
+		<sap:simple-connection-provider-connection username="${sap.s4hana.username}" password="${secure::sap.s4hana.password}" systemNumber="${sap.s4hana.systemNumber}" client="${sap.s4hana.clientId}" applicationServerHost="${sap.s4hana.host}"/>
+	</sap:sap-config>
+</mule>

@@ -1,0 +1,7 @@
+cron:
+  timeZone: ""
+  schedule:
+    asset:
+      order:
+        expression: "0 0 0/4 1/1 * ? *" #every 4 hrs
+    
